@@ -1,0 +1,64 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+  "name": "Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+
+    }
+  },
+  "remoteUser": "root",
+  "containerUser": "root",
+  "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
+  "runArgs": ["--privileged", "--network=host", "-p", "22:22", "-p", "80:80", "-p", "2375:2375", "-p", "8443:8443"],
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    },
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          }
+        },
+        "editor.formatOnSave": true,
+        "python.pythonPath": "/usr/bin/python3",
+        "python.formatting.provider": "black",
+        "go.useLanguageServer": true,
+        "go.lintTool": "golangci-lint",
+        "[go]": {
+          "editor.snippetSuggestions": "none",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
+        },
+        "files.exclude": {
+          "**/bazel-*/**": true
+        },
+        "files.watcherExclude": {
+          "**/bazel-*/**": true
+        },
+        "extensions": [
+          "ms-python.python",
+          "ms-vscode.go",
+          "ms-azuretools.vscode-docker",
+          "ms-kubernetes-tools.vscode-kubernetes-tools",
+          "bazelbuild.vscode-bazel",
+          "editorconfig.editorconfig",
+          "redhat.vscode-yaml",
+          "task.vscode-task",
+          "github.vscode-pull-request-github"
+        ]
+      }
+    }
+  }
+}
