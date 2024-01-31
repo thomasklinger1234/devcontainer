@@ -25,7 +25,7 @@ RUN curl -LO https://dl.google.com/go/go1.20.linux-amd64.tar.gz \
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none && \
-    source "$HOME/.cargo/env" && \
+    . "$HOME/.cargo/env" && \
     export PATH="$PATH:$HOME/.cargo/bin" && \
     rustup default stable
 
